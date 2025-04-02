@@ -23,11 +23,11 @@ jobs:
      run: bandit -ll -ii -r . -f json -o bandit-report.json
 
    - name: Upload Artifact
-     uses: actions/upload-artifact@v3
-     if: always()
-     with:
-      name: bandit-findings
-      path: bandit-report.json
+  uses: actions/upload-artifact@v3
+  with:
+    name: my-artifact
+    path: path/to/artifact
+
 
  image_scan:
    name: Build Image and Run Image Scan
