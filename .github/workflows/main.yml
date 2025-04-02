@@ -9,10 +9,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
 
@@ -23,7 +23,7 @@ jobs:
         run: bandit -ll -ii -r . -f json -o bandit-report.json
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2  # Downgrade from v3 to v2
+        uses: actions/upload-artifact@v3 
         with:
          name: docker-scout-findings
          path: scout-report.sarif
@@ -35,10 +35,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Docker
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       - name: Build Docker Image
         run: docker build -f Dockerfile -t myapp:latest .
@@ -53,7 +53,7 @@ jobs:
           sarif-file: scout-report.sarif
 
       - name: Upload Docker Scout Findings
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         if: always()
         with:
           name: docker-scout-findings
