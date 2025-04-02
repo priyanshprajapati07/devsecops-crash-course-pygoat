@@ -22,11 +22,12 @@ jobs:
       - name: Run Bandit Scan
         run: bandit -ll -ii -r . -f json -o bandit-report.json
 
-      - name: Upload Bandit Report
-        uses: actions/upload-artifact@v3
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2  # Downgrade from v3 to v2
         with:
-          name: bandit-report
-          path: bandit-report.json
+         name: docker-scout-findings
+         path: scout-report.sarif
+
 
   image_scan:
     name: Build Image and Run Image Scan
